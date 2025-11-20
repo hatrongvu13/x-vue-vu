@@ -121,7 +121,7 @@
     <div id="cv-print" class="cv-container" v-if="!editMode">
       <div class="cv-header">
         <div class="avatar">
-          <img src="https://i.imgur.com/8Km9q8p.png" alt="Avatar" />
+          <img src="/images/IMG_1238.JPG" alt="Avatar" />
           <!-- Thay link trên bằng ảnh của bạn (dùng Imgur, Cloudinary, hoặc public/avatar.jpg) -->
         </div>
 
@@ -130,22 +130,22 @@
 
         <div class="contact-info">
           <a :href="'mailto:' + cv.email" class="contact-item">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20,4H4A2,2 0 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L4,8V18H20M20,6H4L12,11L20,6Z"/></svg>
+            <i class="fas fa-envelope"></i>
             <span>{{ cv.email }}</span>
           </a>
 
           <a :href="'tel:' + cv.phone.replace(/\s/g,'')" class="contact-item">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21C10.61,21 3,13.39 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+            <i class="fas fa-phone"></i>
             <span>{{ cv.phone }}</span>
           </a>
 
           <div class="contact-item">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
+            <i class="fas fa-location-dot"></i>
             <span>{{ cv.location }}</span>
           </div>
 
           <a :href="cv.website" target="_blank" class="contact-item">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10,16H14C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.04C12.83,5.24 13.5,6.57 14,8H10C10.5,6.57 11.17,5.24 12,4.04M18.92,8H16C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>
+            <i class="fas fa-globe"></i>
             <span>{{ cv.website.replace('https://', '') }}</span>
           </a>
         </div>
@@ -629,13 +629,16 @@ const sendCVViaEmail = () => {
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 }
 
-.cv-header::before {
+.cv-header::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=800&q=80') center/cover;
-  opacity: 0.1;
+  background: linear-gradient(45deg,
+  rgba(255,255,255,0.1) 0%,
+  rgba(255,255,255,0) 50%
+  );
   border-radius: 20px 20px 0 0;
+  pointer-events: none;
 }
 
 .avatar {
@@ -694,10 +697,11 @@ const sendCVViaEmail = () => {
   transform: translateY(-2px);
 }
 
-.contact-item svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
+.contact-item i {
+  font-size: 19px;
+  width: 22px;
+  text-align: center;
+  color: #a0e7ff;
 }
 
 /* Responsive */
