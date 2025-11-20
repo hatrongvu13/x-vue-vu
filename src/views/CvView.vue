@@ -1,91 +1,60 @@
 <template>
   <div class="cv-page">
-    <!-- NÚT CHUYỂN NGÔN NGỮ -->
-    <div class="language-switcher">
-      <button @click="lang = 'vi'" :class="{ active: lang === 'vi' }">VI</button>
-      <button @click="lang = 'en'" :class="{ active: lang === 'en' }">EN</button>
-    </div>
-    <!-- Nút chức năng (chỉ hiện khi đã login) -->
-    <!--    <div v-if="isLoggedIn" class="cv-actions">-->
-    <div class="cv-actions">
-      <button v-if="isLoggedIn" @click="editMode = !editMode" class="btn-edit">
-        {{
-          editMode
-            ? lang === 'vi'
-              ? 'Xem trước'
-              : 'Preview'
-            : lang === 'vi'
-              ? 'Chỉnh sửa CV'
-              : 'Edit CV'
-        }}
-      </button>
-      <button @click="exportPDF" class="btn-pdf">
-        {{ lang === 'vi' ? 'Xuất PDF' : 'Download PDF' }}
-      </button>
+    <div class="cv-topbar">
+      <!-- NÚT CHUYỂN NGÔN NGỮ -->
+      <div class="language-switcher">
+        <button @click="lang = 'vi'" :class="{ active: lang === 'vi' }">VI</button>
+        <button @click="lang = 'en'" :class="{ active: lang === 'en' }">EN</button>
+      </div>
+      <!-- Nút chức năng (chỉ hiện khi đã login) -->
+      <!--    <div v-if="isLoggedIn" class="cv-actions">-->
+      <div class="cv-actions">
+        <button v-if="isLoggedIn" @click="editMode = !editMode" class="btn-edit">
+          {{
+            editMode
+              ? lang === 'vi'
+                ? 'Xem trước'
+                : 'Preview'
+              : lang === 'vi'
+                ? 'Chỉnh sửa CV'
+                : 'Edit CV'
+          }}
+        </button>
+        <button @click="exportPDF" class="btn-pdf">
+          {{ lang === 'vi' ? 'Xuất PDF' : 'Download PDF' }}
+        </button>
+      </div>
     </div>
 
-    <!-- GHI CHÚ NỔI GÓC PHẢI DƯỚI - CHỈ HIỆN KHI CHƯA LOGIN -->
-    <!--    <div v-if="!isLoggedIn" class="floating-note">-->
-    <!--      <div class="note-content">-->
-    <!--        <h4>Muốn tải CV đẹp (PDF)?</h4>-->
-    <!--        <p>Đăng nhập hoặc để lại email để nhận ngay!</p>-->
-    <!--        <div class="email-form">-->
-    <!--          <input-->
-    <!--            v-model="visitorEmail"-->
-    <!--            type="email"-->
-    <!--            placeholder="you@example.com"-->
-    <!--            @keyup.enter="sendCVViaEmail"-->
-    <!--          />-->
-    <!--          <button @click="sendCVViaEmail">Gửi CV cho tôi</button>-->
-    <!--        </div>-->
-    <!--        <router-link to="/login" class="login-link">Đăng nhập ngay</router-link>-->
-    <!--      </div>-->
-    <!--      <button class="close-btn" @click="showNote = false">×</button>-->
-    <!--    </div>-->
-    <!-- POPUP GHI CHÚ + NÚT NHỎ KHI ĐÓNG -->
+    <!-- POPUP TẢI CV KHI CHƯA LOGIN - HIỆU ỨNG SIÊU MƯỢT -->
     <template v-if="!isLoggedIn">
-      <!-- Popup lớn -->
-      <transition name="fade">
+      <!-- Popup lớn: hiện từ dưới lên, đóng thì lặn xuống + rung nhẹ -->
+      <transition
+        name="slide-fade"
+        @enter="onEnter"
+        @leave="onLeave"
+        mode="out-in"
+      >
         <div v-if="showNote" class="floating-note">
           <div class="note-content">
-            <h4>{{ lang === 'vi' ? 'Muốn tải CV đẹp (PDF)?' : 'Want my beautiful CV (PDF)?' }}</h4>
-            <p>
-              {{
-                lang === 'vi'
-                  ? 'Đăng nhập hoặc để lại email để nhận ngay!'
-                  : 'Log in or leave your email to get it!'
-              }}
-            </p>
+            <h4>{{ lang === 'vi' ? 'Muốn tải CV đẹp (PDF)?' : 'Want my CV (PDF)?' }}</h4>
+            <p>{{ lang === 'vi' ? 'Đăng nhập hoặc để lại email để nhận ngay!' : 'Log in or leave your email!' }}</p>
             <div class="email-form">
-              <input
-                v-model="visitorEmail"
-                type="email"
-                placeholder="email@example.com"
-                @keyup.enter="sendCVViaEmail"
-              />
-              <button @click="sendCVViaEmail">
-                {{ lang === 'vi' ? 'Gửi cho tôi' : 'Send me' }}
-              </button>
+              <input v-model="visitorEmail" type="email" placeholder="email@example.com" @keyup.enter="sendCVViaEmail" />
+              <button @click="sendCVViaEmail">{{ lang === 'vi' ? 'Gửi cho tôi' : 'Send me' }}</button>
             </div>
-            <router-link to="/login" class="login-link">{{
-              lang === 'vi' ? 'Đăng nhập ngay' : 'Log in now'
-            }}</router-link>
+            <router-link to="/login" class="login-link">
+              {{ lang === 'vi' ? 'Đăng nhập ngay' : 'Log in now' }}
+            </router-link>
           </div>
           <button class="close-btn" @click="showNote = false" title="Thu nhỏ">X</button>
         </div>
       </transition>
-      <transition name="fade">
-        <div
-          v-if="!showNote"
-          class="mini-cv-button"
-          @click="showNote = true"
-          title="Mở lại form tải CV"
-        >
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
-            <path
-              d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
-            />
-          </svg>
+
+      <!-- Nút nhỏ: hiện từ dưới lên mượt -->
+      <transition name="bounce">
+        <div v-if="!showNote" class="mini-cv-button" @click="showNote = true" title="Mở lại form tải CV">
+          <i class="fas fa-file-pdf"></i>
           <span>CV</span>
         </div>
       </transition>
@@ -134,7 +103,7 @@
             <span>{{ cv.email }}</span>
           </a>
 
-          <a :href="'tel:' + cv.phone.replace(/\s/g,'')" class="contact-item">
+          <a :href="'tel:' + cv.phone.replace(/\s/g, '')" class="contact-item">
             <i class="fas fa-phone"></i>
             <span>{{ cv.phone }}</span>
           </a>
@@ -271,11 +240,7 @@ const exportPDF = () => {
     html2canvas: { scale: 2, useCORS: true },
     jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
   }
-  html2pdf()
-    // .set({ margin: 1, filename: filename, html2canvas: { scale: 2 } })
-    .set(opt)
-    .from(element)
-    .save()
+  html2pdf().set(opt).from(element).save()
 }
 
 const sendCVViaEmail = () => {
@@ -295,32 +260,59 @@ const sendCVViaEmail = () => {
   max-width: 900px;
   margin: 2rem auto;
   padding: 1rem;
+  position: relative;
 }
+/* THANH CHỨC NĂNG CỐ ĐỊNH TRÊN CÙNG - KHÔNG BỊ ĐÈ NỮA */
+.cv-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 10px;
+}
+
+/* NÚT XUẤT PDF + CHỈNH SỬA */
 .cv-actions {
-  text-align: right;
-  margin-bottom: 1rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .btn-edit,
 .btn-pdf,
 .btn-save {
-  padding: 10px 20px;
-  margin: 0 5px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 .btn-edit {
-  background: #f39c12;
+  background: linear-gradient(45deg, #f39c12, #e67e22);
   color: white;
 }
 .btn-pdf {
-  background: #e74c3c;
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
   color: white;
 }
 .btn-save {
   background: #27ae60;
   color: white;
   font-size: 1.1rem;
+}
+
+.btn-edit:hover,
+.btn-pdf:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
 
 .cv-container {
@@ -335,10 +327,22 @@ const sendCVViaEmail = () => {
   font-size: 2.8rem;
   color: #2c3e50;
 }
-.cv-header h2 {
-  font-size: 1.6rem;
-  color: #3498db;
-  margin: 10px 0;
+
+.cv-header h2.title {
+  font-size: 1.75rem; /* to hơn một chút */
+  font-weight: 700; /* đậm hơn */
+  margin: 12px 0 20px;
+  color: #ffffff; /* trắng tinh để nổi bật nhất */
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    /* bóng đen nhẹ */ 0 0 15px rgba(255, 255, 255, 0.6); /* viền sáng nhẹ */
+  letter-spacing: 1.2px;
+  opacity: 1;
+  background: linear-gradient(90deg, #a0e7ff, #e0f7fa); /* hiệu ứng gradient chữ */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* chữ trong suốt, hiện gradient */
+  padding: 0 4px;
 }
 
 .section {
@@ -549,71 +553,123 @@ const sendCVViaEmail = () => {
     max-width: none;
   }
 }
-/* NÚT NHỎ KHI ĐÓNG POPUP */
+/* HIỆU ỨNG ĐÓNG POPUP SIÊU MƯỢT + RUNG NHẸ */
+.slide-fade-enter-active {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slide-fade-enter-from {
+  transform: translateY(100px) scale(0.9);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateY(120px) scale(0.95);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+/* Rung nhẹ khi bắt đầu đóng (cực chất!) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+/* Nút nhỏ hiện lên với bounce */
+.bounce-enter-active {
+  animation: bounceIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.bounce-leave-active {
+  animation: bounceIn 0.5s reverse;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: translateY(100px) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  70% {
+    transform: translateY(0) scale(0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Nút nhỏ đẹp hơn + icon Font Awesome */
 .mini-cv-button {
   position: fixed;
   bottom: 30px;
   right: 30px;
   background: linear-gradient(45deg, #e74c3c, #c0392b);
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
+  box-shadow: 0 10px 30px rgba(231, 76, 60, 0.6);
   cursor: pointer;
   z-index: 999;
   font-weight: bold;
-  font-size: 0.8rem;
-  transition: all 0.3s;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  border: 4px solid rgba(255,255,255,0.2);
+}
+
+.mini-cv-button i {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
 }
 
 .mini-cv-button:hover {
-  transform: scale(1.15);
-  box-shadow: 0 12px 35px rgba(231, 76, 60, 0.7);
+  transform: translateY(-8px) scale(1.1) !important;
+  box-shadow: 0 20px 40px rgba(231, 76, 60, 0.7);
 }
 
-/* Hiệu ứng fade mượt */
-.fade-enter-active,
-.fade-leave-active {
-  transition:
-    opacity 0.4s,
-    transform 0.4s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+/* Mobile */
+@media (max-width: 480px) {
+  .mini-cv-button {
+    width: 62px;
+    height: 62px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .mini-cv-button i { font-size: 1.4rem; }
 }
 
 .language-switcher {
-  position: absolute;
-  top: 80px;
-  right: 20px;
   background: white;
-  border-radius: 30px;
+  border-radius: 50px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 100;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  display: inline-flex;
 }
 
 .language-switcher button {
-  padding: 10px 20px;
+  padding: 11px 22px;
   border: none;
   background: #ecf0f1;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .language-switcher button.active {
-  background: #3498db;
+  background: #667eea;
   color: white;
 }
-
 .language-switcher button:hover:not(.active) {
   background: #bdc3c7;
 }
@@ -632,11 +688,11 @@ const sendCVViaEmail = () => {
 .cv-header::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(45deg,
-  rgba(255,255,255,0.1) 0%,
-  rgba(255,255,255,0) 50%
-  );
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
   border-radius: 20px 20px 0 0;
   pointer-events: none;
 }
@@ -647,8 +703,8 @@ const sendCVViaEmail = () => {
   margin: 0 auto 1.5rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 6px solid rgba(255,255,255,0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   background: white;
 }
 
@@ -662,14 +718,13 @@ const sendCVViaEmail = () => {
   font-size: 2.8rem;
   margin: 0.5rem 0;
   font-weight: 700;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .title {
   font-size: 1.6rem;
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.5rem 0 1.8rem;
   opacity: 0.95;
-  font-weight: 400;
   letter-spacing: 1px;
 }
 
@@ -704,11 +759,37 @@ const sendCVViaEmail = () => {
   color: #a0e7ff;
 }
 
+/* Mobile: xếp chồng đẹp */
+@media (max-width: 768px) {
+  .cv-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .language-switcher {
+    order: 2;
+    justify-content: center;
+  }
+  .cv-actions {
+    order: 1;
+    justify-content: center;
+  }
+}
+
 /* Responsive */
 @media (max-width: 640px) {
-  .name { font-size: 2.2rem; }
-  .title { font-size: 1.4rem; }
-  .avatar { width: 110px; height: 110px; }
-  .contact-info { flex-direction: column; gap: 0.8rem; }
+  .name {
+    font-size: 2.2rem;
+  }
+  .title {
+    font-size: 1.4rem;
+  }
+  .avatar {
+    width: 110px;
+    height: 110px;
+  }
+  .contact-info {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
 }
 </style>
