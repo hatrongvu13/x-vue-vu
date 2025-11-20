@@ -6,6 +6,8 @@ import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import CvView from '@/views/CvView.vue'
+import ContactView from '@/views/ContactView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,6 +16,8 @@ const router = createRouter({
     { path: '/login', name: 'login', component: LoginView },
     { path: '/register', name: 'register', component: RegisterView },
     { path: '/cv', name: 'cv', component: CvView },
+    { path: '/contact', name: 'contact', component: ContactView },
+    { path: '/about', name: 'about', component: AboutView },
   ]
 })
 
