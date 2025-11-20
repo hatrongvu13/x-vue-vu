@@ -1,0 +1,107 @@
+{
+  "vi": {
+    "name": "Hà Trọng Vũ",
+    "title": "Lập trình viên Fullstack",
+    "email": "nguyenvana@gmail.com",
+    "phone": "0909 123 456",
+    "location": "TP. Hồ Chí Minh, Việt Nam",
+    "website": "https://hatrongvu13.github.io",
+    "summary": "Lập trình viên đam mê công nghệ, có hơn 3 năm kinh nghiệm phát triển web với Vue.js, React, Node.js. Luôn học hỏi và thích xây dựng sản phẩm chất lượng cao.",
+
+    "experience": [
+      {
+        "company": "Công ty ABC Tech",
+        "position": "Senior Frontend Developer",
+        "duration": "2023 – Hiện tại",
+        "description": ["Chủ trì phát triển hệ thống quản trị nội bộ với Vue 3 + Pinia", "Tối ưu hiệu năng giảm 60% thời gian load trang", "Đào tạo và hướng dẫn 5 bạn junior"]
+      },
+      {
+        "company": "FPT Software",
+        "position": "Frontend Developer",
+        "duration": "2021 – 2023",
+        "description": ["Phát triển ứng dụng ngân hàng số", "Làm việc với team quốc tế (Singapore, Nhật)"]
+      }
+    ],
+
+    "education": [
+      {
+        "school": "Đại học Bách Khoa TP.HCM",
+        "major": "Kỹ thuật Phần mềm",
+        "duration": "2017 – 2021",
+        "gpa": "8.2/10"
+      }
+    ],
+
+    "skills": ["Vue 3", "React", "TypeScript", "Node.js", "TailwindCSS", "Git", "Docker", "AWS"],
+
+    "languages": [
+      { "name": "Tiếng Việt", "level": "Mẹ đẻ" },
+      { "name": "Tiếng Anh", "level": "IELTS 7.5" }
+    ],
+
+    "projects": [
+      {
+        "id": "ecommerce",
+        "title": "Hệ thống thương mại điện tử Vue + Node.js",
+        "shortDesc": "Website bán hàng full tính năng: giỏ hàng, thanh toán VNPay, quản trị admin",
+        "fullDesc": "Dự án thương mại điện tử hoàn chỉnh với hơn 10.000 người dùng...\n\nCông nghệ: Vue 3, Node.js, MongoDB, Tailwind, VNPay...",
+        "tech": ["Vue 3", "Node.js", "MongoDB", "Tailwind"],
+        "link": "https://shop.example.com",
+        "year": "2024"
+      }
+    ]
+  },
+
+  "en": {
+    "name": "Nguyen Van A",
+    "title": "Fullstack Developer",
+    "email": "nguyenvana@gmail.com",
+    "phone": "+84 909 123 456",
+    "location": "Ho Chi Minh City, Vietnam",
+    "website": "https://nguyenvana.dev",
+    "summary": "Passionate developer with over 3 years of experience in web development using Vue.js, React, and Node.js. Always eager to learn and build high-quality products.",
+
+    "experience": [
+      {
+        "company": "ABC Tech Company",
+        "position": "Senior Frontend Developer",
+        "duration": "2023 – Present",
+        "description": ["Led development of internal management system using Vue 3 + Pinia", "Optimized performance, reducing load time by 60%", "Mentored 5 junior developers"]
+      },
+      {
+        "company": "FPT Software",
+        "position": "Frontend Developer",
+        "duration": "2021 – 2023",
+        "description": ["Developed digital banking application", "Worked with international teams (Singapore, Japan)"]
+      }
+    ],
+
+    "education": [
+      {
+        "school": "Ho Chi Minh City University of Technology",
+        "major": "Software Engineering",
+        "duration": "2017 – 2021",
+        "gpa": "GPA: 8.2/10"
+      }
+    ],
+
+    "skills": ["Vue 3", "React", "TypeScript", "Node.js", "TailwindCSS", "Git", "Docker", "AWS"],
+
+    "languages": [
+      { "name": "Vietnamese", "level": "Native" },
+      { "name": "English", "level": "IELTS 7.5" }
+    ],
+
+    "projects": [
+      {
+        "id": "ecommerce",
+        "title": "E-commerce Platform with Vue + Node.js",
+        "shortDesc": "Full-featured online store: cart, VNPay payment, admin panel",
+        "fullDesc": "Complete e-commerce platform with 10,000+ active users...\n\nTech stack: Vue 3, Node.js, MongoDB, Tailwind, VNPay...",
+        "tech": ["Vue 3", "Node.js", "MongoDB", "Tailwind"],
+        "link": "https://shop.example.com",
+        "year": "2024"
+      }
+    ]
+  }
+}

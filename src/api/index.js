@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {auth } from '@/utils/auth.js';
+import {auth } from '@/stores/auth.js';
 
 const api = axios.create({
   baseURL: 'http://127.0.0.1:8080/x-platform/api',
