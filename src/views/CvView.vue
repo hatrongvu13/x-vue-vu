@@ -29,19 +29,26 @@
     <!-- POPUP TẢI CV KHI CHƯA LOGIN - HIỆU ỨNG SIÊU MƯỢT -->
     <template v-if="!isLoggedIn">
       <!-- Popup lớn: hiện từ dưới lên, đóng thì lặn xuống + rung nhẹ -->
-      <transition
-        name="slide-fade"
-        @enter="onEnter"
-        @leave="onLeave"
-        mode="out-in"
-      >
+      <transition name="slide-fade" @enter="onEnter" @leave="onLeave" mode="out-in">
         <div v-if="showNote" class="floating-note">
           <div class="note-content">
             <h4>{{ lang === 'vi' ? 'Muốn tải CV đẹp (PDF)?' : 'Want my CV (PDF)?' }}</h4>
-            <p>{{ lang === 'vi' ? 'Đăng nhập hoặc để lại email để nhận ngay!' : 'Log in or leave your email!' }}</p>
+            <p>
+              {{
+                lang === 'vi'
+                  ? 'Đăng nhập hoặc để lại email để nhận ngay!'
+                  : 'Log in or leave your email!'
+              }}
+            </p>
             <div class="email-form">
-              <input v-model="visitorEmail" type="email" placeholder="email@example.com" @keyup.enter="sendCVViaEmail" />
-              <button @click="sendCVViaEmail">{{ lang === 'vi' ? 'Gửi cho tôi' : 'Send me' }}</button>
+              <input
+                v-model="visitorEmail"
+                type="email"
+                placeholder="email@example.com"
+                @keyup.enter="sendCVViaEmail" />
+              <button @click="sendCVViaEmail">
+                {{ lang === 'vi' ? 'Gửi cho tôi' : 'Send me' }}
+              </button>
             </div>
             <router-link to="/login" class="login-link">
               {{ lang === 'vi' ? 'Đăng nhập ngay' : 'Log in now' }}
@@ -53,7 +60,11 @@
 
       <!-- Nút nhỏ: hiện từ dưới lên mượt -->
       <transition name="bounce">
-        <div v-if="!showNote" class="mini-cv-button" @click="showNote = true" title="Mở lại form tải CV">
+        <div
+          v-if="!showNote"
+          class="mini-cv-button"
+          @click="showNote = true"
+          title="Mở lại form tải CV">
           <i class="fas fa-file-pdf"></i>
           <span>CV</span>
         </div>
@@ -66,9 +77,9 @@
       <textarea
         v-model="editableData.summary"
         rows="4"
-        placeholder="Giới thiệu bản thân"
-      ></textarea>
-      <br /><br />
+        placeholder="Giới thiệu bản thân"></textarea>
+      <br />
+      <br />
 
       <h3>
         {{ lang === 'vi' ? 'Kinh nghiệm làm việc' : 'Work Experience'
@@ -129,7 +140,9 @@
         <h3>{{ lang === 'vi' ? 'Kinh nghiệm làm việc' : 'Work Experience' }}</h3>
         <div v-for="exp in cv.experience" :key="exp.company" class="job">
           <div class="job-header">
-            <strong>{{ exp.position }}</strong> tại <strong>{{ exp.company }}</strong>
+            <strong>{{ exp.position }}</strong>
+            tại
+            <strong>{{ exp.company }}</strong>
             <span class="duration">{{ exp.duration }}</span>
           </div>
           <ul>
@@ -141,7 +154,9 @@
       <section class="section">
         <h3>{{ lang === 'vi' ? 'Học vấn' : 'Education' }}</h3>
         <div v-for="edu in cv.education" :key="edu.school">
-          <strong>{{ edu.school }}</strong> – {{ edu.major }}<br />
+          <strong>{{ edu.school }}</strong>
+          – {{ edu.major }}
+          <br />
           <small>{{ edu.duration }} | GPA: {{ edu.gpa }}</small>
         </div>
       </section>
@@ -215,7 +230,7 @@ const addExperience = () => {
     company: '',
     position: '',
     duration: '',
-    description: [''],
+    description: ['']
   })
 }
 
@@ -238,7 +253,7 @@ const exportPDF = () => {
     filename,
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
   }
   html2pdf().set(opt).from(element).save()
 }
@@ -249,7 +264,7 @@ const sendCVViaEmail = () => {
     return
   }
   alert(
-    `Cảm ơn! CV sẽ được gửi đến: ${visitorEmail.value}\n(Chức năng gửi mail thật sẽ làm sau nhé)`,
+    `Cảm ơn! CV sẽ được gửi đến: ${visitorEmail.value}\n(Chức năng gửi mail thật sẽ làm sau nhé)`
   )
   visitorEmail.value = ''
 }
@@ -572,11 +587,22 @@ const sendCVViaEmail = () => {
 
 /* Rung nhẹ khi bắt đầu đóng (cực chất!) */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-6px); }
-  80% { transform: translateX(6px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
 }
 
 /* Nút nhỏ hiện lên với bounce */
@@ -624,7 +650,7 @@ const sendCVViaEmail = () => {
   font-weight: bold;
   font-size: 0.85rem;
   transition: all 0.3s ease;
-  border: 4px solid rgba(255,255,255,0.2);
+  border: 4px solid rgba(255, 255, 255, 0.2);
 }
 
 .mini-cv-button i {
@@ -645,7 +671,9 @@ const sendCVViaEmail = () => {
     bottom: 20px;
     right: 20px;
   }
-  .mini-cv-button i { font-size: 1.4rem; }
+  .mini-cv-button i {
+    font-size: 1.4rem;
+  }
 }
 
 .language-switcher {

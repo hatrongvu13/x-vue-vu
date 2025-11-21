@@ -59,11 +59,16 @@
             <input v-model="form.subject" type="text" placeholder="Chủ đề" required />
           </div>
           <div class="form-group">
-            <textarea v-model="form.message" rows="6" placeholder="Nội dung tin nhắn..." required></textarea>
+            <textarea
+              v-model="form.message"
+              rows="6"
+              placeholder="Nội dung tin nhắn..."
+              required></textarea>
           </div>
           <button type="submit" class="btn-send" :disabled="sending">
             <span v-if="!sending">
-              <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+              <i class="fas fa-paper-plane"></i>
+              Gửi tin nhắn
             </span>
             <span v-else>Đang gửi...</span>
           </button>
@@ -153,14 +158,19 @@ onMounted(() => {
   color: white;
 }
 .avatar-large {
-  width: 110px; height: 110px;
+  width: 110px;
+  height: 110px;
   background: linear-gradient(135deg, #ff6b6b, #feca57);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3.2rem; font-weight: 900; color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: white;
   margin: 0 auto 1.5rem;
-  box-shadow: 0 12px 35px rgba(255,107,107,0.5);
-  border: 6px solid rgba(255,255,255,0.3);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+  border: 6px solid rgba(255, 255, 255, 0.3);
 }
 .contact-header h1 {
   font-size: 2.6rem;
@@ -186,27 +196,38 @@ onMounted(() => {
   padding: 1.8rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
   text-decoration: none;
   color: #2c3e50;
 }
 .contact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 .icon-circle {
-  width: 70px; height: 70px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto 1rem;
   font-size: 1.8rem;
   color: white;
 }
-.icon-circle.email    { background: linear-gradient(45deg, #ff6b6b, #feca57); }
-.icon-circle.phone    { background: linear-gradient(45deg, #667eea, #764ba2); }
-.icon-circle.linkedin { background: linear-gradient(45deg, #0077b5, #00a0dc); }
-.icon-circle.github   { background: linear-gradient(45deg, #333, #444); }
+.icon-circle.email {
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+}
+.icon-circle.phone {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+}
+.icon-circle.linkedin {
+  background: linear-gradient(45deg, #0077b5, #00a0dc);
+}
+.icon-circle.github {
+  background: linear-gradient(45deg, #333, #444);
+}
 
 .contact-card strong {
   display: block;
@@ -248,7 +269,7 @@ onMounted(() => {
   outline: none;
   border-color: #667eea;
   background: white;
-  box-shadow: 0 0 0 5px rgba(102,126,234,0.15);
+  box-shadow: 0 0 0 5px rgba(102, 126, 234, 0.15);
 }
 .btn-send {
   width: 100%;
@@ -261,7 +282,7 @@ onMounted(() => {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s;
-  box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,7 +290,7 @@ onMounted(() => {
 }
 .btn-send:hover:not(:disabled) {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(102,126,234,0.5);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
 }
 .btn-send:disabled {
   opacity: 0.7;
@@ -290,13 +311,28 @@ onMounted(() => {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .contact-header { padding: 2.5rem 1.5rem 1.5rem; }
-  .contact-header h1 { font-size: 2.2rem; }
-  .avatar-large { width: 90px; height: 90px; font-size: 2.6rem; }
-  .contact-grid { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
-  .contact-form { padding: 2.5rem 1.5rem; }
+  .contact-header {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+  .contact-header h1 {
+    font-size: 2.2rem;
+  }
+  .avatar-large {
+    width: 90px;
+    height: 90px;
+    font-size: 2.6rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem 1.5rem;
+  }
+  .contact-form {
+    padding: 2.5rem 1.5rem;
+  }
 }
 @media (max-width: 480px) {
-  .contact-grid { grid-template-columns: 1fr; }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

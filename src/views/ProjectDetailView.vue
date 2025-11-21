@@ -34,13 +34,17 @@ const project = ref(null)
 
 onMounted(() => {
   const id = route.params.id
-  project.value = cvData.projects.find(p => p.id === id)
+  project.value = cvData.projects.find((p) => p.id === id)
   if (!project.value) router.push('/cv')
 })
 </script>
 
 <style scoped>
-.container { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
 .back-btn {
   display: inline-block;
   margin-bottom: 2rem;
@@ -52,11 +56,21 @@ onMounted(() => {
   background: white;
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
-h1 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 0.5rem; }
-.year { color: #e67e22; font-weight: bold; font-size: 1.2rem; }
-.tech-stack { margin: 20px 0; }
+h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+.year {
+  color: #e67e22;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.tech-stack {
+  margin: 20px 0;
+}
 .tech {
   display: inline-block;
   background: #3498db;

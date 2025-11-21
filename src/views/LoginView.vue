@@ -18,8 +18,7 @@
             type="email"
             placeholder="email@example.com"
             required
-            autocomplete="email"
-          />
+            autocomplete="email" />
         </div>
 
         <div class="input-group">
@@ -29,8 +28,7 @@
             type="password"
             placeholder="Mật khẩu"
             required
-            autocomplete="current-password"
-          />
+            autocomplete="current-password" />
         </div>
 
         <button type="submit" class="btn-login">
@@ -45,7 +43,8 @@
           <router-link to="/register" class="link-register">Đăng ký ngay</router-link>
         </p>
         <router-link to="/" class="link-home">
-          <i class="fas fa-home"></i> Quay về trang chủ
+          <i class="fas fa-home"></i>
+          Quay về trang chủ
         </router-link>
       </div>
     </div>
@@ -76,7 +75,8 @@ const handleLogin = async () => {
   if (!email.value || !password.value) return
 
   loading.value = true
-  setTimeout(() => { // Giả lập delay nhẹ cho đẹp
+  setTimeout(() => {
+    // Giả lập delay nhẹ cho đẹp
     if (login(email.value, password.value)) {
       router.push('/')
     } else {
@@ -107,12 +107,21 @@ const handleLogin = async () => {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: repeating-conic-gradient(from 30deg, transparent 0%, rgba(255,255,255,0.03) 10%, transparent 20%);
+  background: repeating-conic-gradient(
+    from 30deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 10%,
+    transparent 20%
+  );
   animation: rotate 30s linear infinite;
   pointer-events: none;
   opacity: 0.3;
 }
-@keyframes rotate { to { transform: rotate(360deg); } }
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .auth-box {
   background: white;
@@ -144,7 +153,7 @@ const handleLogin = async () => {
   font-weight: 900;
   color: white;
   box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-  border: 5px solid rgba(255,255,255,0.3);
+  border: 5px solid rgba(255, 255, 255, 0.3);
 }
 
 h1 {
@@ -255,7 +264,13 @@ h1 {
     padding: 2.5rem 2rem;
     border-radius: 20px;
   }
-  h1 { font-size: 2.1rem; }
-  .avatar-placeholder { width: 90px; height: 90px; font-size: 2.8rem; }
+  h1 {
+    font-size: 2.1rem;
+  }
+  .avatar-placeholder {
+    width: 90px;
+    height: 90px;
+    font-size: 2.8rem;
+  }
 }
 </style>

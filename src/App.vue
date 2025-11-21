@@ -1,7 +1,8 @@
 <template>
   <Navbar />
   <main class="main-content">
-    <router-view />        <!-- Trang chủ, CV, Login, Register... sẽ hiện ở đây -->
+    <router-view />
+    <!-- Trang chủ, CV, Login, Register... sẽ hiện ở đây -->
   </main>
 </template>
 
@@ -28,7 +29,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding-top: 50px;           /* Đẩy nội dung xuống dưới navbar cố định */
+  padding-top: 50px; /* Đẩy nội dung xuống dưới navbar cố định */
   padding-bottom: 4rem;
 }
 
@@ -59,8 +60,14 @@ body {
 
 /* Hiệu ứng mờ dần khi vào trang */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Mobile hoàn hảo */

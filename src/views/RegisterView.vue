@@ -18,8 +18,7 @@
             v-model="name"
             type="text"
             placeholder="Họ và tên (tùy chọn)"
-            autocomplete="name"
-          />
+            autocomplete="name" />
         </div>
 
         <div class="input-group">
@@ -29,8 +28,7 @@
             type="email"
             placeholder="email@example.com"
             required
-            autocomplete="email"
-          />
+            autocomplete="email" />
         </div>
 
         <div class="input-group">
@@ -41,13 +39,13 @@
             placeholder="Mật khẩu (tối thiểu 6 ký tự)"
             required
             minlength="6"
-            autocomplete="new-password"
-          />
+            autocomplete="new-password" />
         </div>
 
         <button type="submit" class="btn-register" :disabled="loading">
           <span v-if="!loading">
-            <i class="fas fa-user-plus"></i> Đăng ký ngay
+            <i class="fas fa-user-plus"></i>
+            Đăng ký ngay
           </span>
           <span v-else>Đang tạo tài khoản...</span>
         </button>
@@ -59,7 +57,8 @@
           <router-link to="/login" class="link-login">Đăng nhập ngay</router-link>
         </p>
         <router-link to="/" class="link-home">
-          <i class="fas fa-home"></i> Quay về trang chủ
+          <i class="fas fa-home"></i>
+          Quay về trang chủ
         </router-link>
       </div>
     </div>
@@ -113,14 +112,25 @@ const handleRegister = async () => {
 .auth-container::before {
   content: '';
   position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: repeating-conic-gradient(from 30deg, transparent 0%, rgba(255,255,255,0.03) 10%, transparent 20%);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(
+    from 30deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 10%,
+    transparent 20%
+  );
   animation: rotate 35s linear infinite;
   opacity: 0.3;
   pointer-events: none;
 }
-@keyframes rotate { to { transform: rotate(360deg); } }
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .auth-box {
   background: white;
@@ -136,7 +146,9 @@ const handleRegister = async () => {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.logo { margin-bottom: 1.5rem; }
+.logo {
+  margin-bottom: 1.5rem;
+}
 
 .avatar-placeholder {
   width: 110px;
@@ -151,12 +163,17 @@ const handleRegister = async () => {
   font-weight: 900;
   color: white;
   box-shadow: 0 12px 35px rgba(255, 107, 107, 0.45);
-  border: 6px solid rgba(255,255,255,0.3);
+  border: 6px solid rgba(255, 255, 255, 0.3);
   animation: pulse 4s infinite;
 }
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 h1 {
@@ -173,7 +190,9 @@ h1 {
   line-height: 1.5;
 }
 
-.register-form { margin: 2rem 0; }
+.register-form {
+  margin: 2rem 0;
+}
 
 .input-group {
   position: relative;
@@ -274,8 +293,17 @@ h1 {
     padding: 2.5rem 2rem;
     border-radius: 20px;
   }
-  h1 { font-size: 2.2rem; }
-  .avatar-placeholder { width: 95px; height: 95px; font-size: 3rem; }
-  .btn-register { padding: 16px; font-size: 1.1rem; }
+  h1 {
+    font-size: 2.2rem;
+  }
+  .avatar-placeholder {
+    width: 95px;
+    height: 95px;
+    font-size: 3rem;
+  }
+  .btn-register {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
 }
 </style>

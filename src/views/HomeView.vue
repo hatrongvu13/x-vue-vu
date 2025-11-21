@@ -16,8 +16,15 @@
     <!-- Nội dung riêng tư -->
     <div v-if="user" class="card private">
       <h2>Xin chào {{ user.name }}!</h2>
-      <p>Đây là nội dung <strong>RIÊNG TƯ</strong> chỉ thành viên mới thấy được</p>
-      <div class="secret">Mã giảm giá bí mật: <strong>VUE2025</strong></div>
+      <p>
+        Đây là nội dung
+        <strong>RIÊNG TƯ</strong>
+        chỉ thành viên mới thấy được
+      </p>
+      <div class="secret">
+        Mã giảm giá bí mật:
+        <strong>VUE2025</strong>
+      </div>
       <p>Email của bạn: {{ user.email }}</p>
     </div>
 
