@@ -1,12 +1,13 @@
 import axios from 'axios';
-import {auth } from '@/stores/auth.js';
+import { useAuth } from '@/stores/auth.js'
 
+const { logout } = useAuth();
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8080/x-platform/api',
+  baseURL: 'https://api.jaxtony.store/x-platform/api',
 })
 
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -16,7 +17,7 @@ api.interceptors.response.use(
   res => res,
   err => {
     if (err.response && err.response.status === 401) {
-      auth.logout();
+      logout()
     }
     return Promise.reject(err);
   }

@@ -8,8 +8,8 @@ const saved = localStorage.getItem('user')
 if (saved) user.value = JSON.parse(saved)
 
 export const useAuth = () => {
-  const login = (email, password) => {
-    if (email && password) {
+  const login = (email) => {
+    if (email) {
       user.value = { email, name: email.split('@')[0] || 'User' }
       localStorage.setItem('user', JSON.stringify(user.value))
       return true
@@ -26,6 +26,7 @@ export const useAuth = () => {
   const logout = () => {
     user.value = null
     localStorage.removeItem('user')
+    localStorage.clear()
   }
 
   return { user, login, register, logout }

@@ -59,6 +59,9 @@
               <router-link to="/admin/emails" class="menu-item admin">
                 <i class="fas fa-users"></i> Email nhận CV ({{ emailListCount }})
               </router-link>
+              <router-link to="/admin/cv" class="menu-item admin">
+                <i class="fas fa-file-alt"></i> Quản lý CV
+              </router-link>
               <div class="menu-divider"></div>
             </template>
 

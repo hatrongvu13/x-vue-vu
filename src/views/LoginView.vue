@@ -55,6 +55,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores/auth'
+import api from '@/api/index.js'
 
 const email = ref('')
 const password = ref('')
@@ -73,17 +74,27 @@ onMounted(() => {
 
 const handleLogin = async () => {
   if (!email.value || !password.value) return
-
   loading.value = true
-  setTimeout(() => {
-    // Giả lập delay nhẹ cho đẹp
-    if (login(email.value, password.value)) {
-      router.push('/')
-    } else {
-      alert('Email hoặc mật khẩu không đúng!')
-    }
-    loading.value = false
-  }, 600)
+  const { data } = await api.post('/user/login', { email: email.value, password: password.value })
+  console.log(data)
+  if (data && data.token) {
+    login(email.value, password.value)
+    localStorage.setItem('accessToken', data.token)
+    router.push('/')
+  } else {
+    alert('Email hoặc mật khẩu không đúng!')
+  }
+  loading.value = false
+
+  // setTimeout(() => {
+  //   // Giả lập delay nhẹ cho đẹp
+  //   if (login(email.value, password.value)) {
+  //     router.push('/')
+  //   } else {
+  //     alert('Email hoặc mật khẩu không đúng!')
+  //   }
+  //   loading.value = false
+  // }, 600)
 }
 </script>
 

@@ -8,6 +8,10 @@ import RegisterView from '@/views/RegisterView.vue'
 import CvView from '@/views/CvView.vue'
 import ContactView from '@/views/ContactView.vue'
 import AboutView from '@/views/AboutView.vue'
+import EmailsView from '@/views/admin/EmailsView.vue'
+import DashboardView from '@/views/admin/DashboardView.vue'
+import VisitorsView from '@/views/admin/VisitorsView.vue'
+import AdminCvView from '@/views/admin/AdminCvView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,7 +21,11 @@ const router = createRouter({
     { path: '/register', name: 'register', component: RegisterView },
     { path: '/cv', name: 'cv', component: CvView },
     { path: '/contact', name: 'contact', component: ContactView },
-    { path: '/about', name: 'about', component: AboutView }
+    { path: '/about', name: 'about', component: AboutView },
+    { path: '/admin/emails', name: 'emails', component: EmailsView },
+    { path: '/admin/visitors', name: 'visitors', component: VisitorsView },
+    { path: '/admin/cv', name: 'admin-cv', component: AdminCvView },
+    { path: '/dashboard', name: 'dashboard', component: DashboardView },
   ]
 })
 
