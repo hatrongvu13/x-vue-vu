@@ -65,7 +65,7 @@
               <div class="menu-divider"></div>
             </template>
 
-            <button @click="logout" class="menu-item logout">
+            <button @click="handleLogout" class="menu-item logout">
               <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </button>
           </div>
@@ -106,7 +106,7 @@
             <div class="mobile-user">Xin chào, {{ user.name }}</div>
             <button
               @click="
-                logout(),
+                handleLogout(),
                 mobileMenuOpen = false
               "
               class="mobile-logout"
@@ -123,10 +123,15 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useAuth } from '@/stores/auth'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const { user, logout } = useAuth()
-// const router = useRouter()
+const router = useRouter()
+
+const handleLogout = () => {
+  logout()
+  router.push('/')
+}
 
 const menuOpen = ref(false)
 const mobileMenuOpen = ref(false)
