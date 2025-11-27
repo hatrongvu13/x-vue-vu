@@ -473,14 +473,14 @@
 import { useAuth } from '@/stores/auth'
 const { user } = useAuth()
 
-const fullName = 'Lê Thành Vinh'
-const tagline = 'Full-Stack Developer | Java & Vue.js Enthusiast | Coffee Addict'
+const fullName = 'Hà Trọng Vũ'
+const tagline = 'Backend Developer | Java & Spring Framework | Technical Addict'
 
 const social = {
-  github: 'https://github.com/yourusername',
+  github: 'https://github.com/hatrongvu13',
   linkedin: 'https://linkedin.com/in/yourusername',
-  email: 'your.email@gmail.com',
-  telegram: 'https://t.me/yourusername'
+  email: 'hatrongvu13@gmail.com',
+  telegram: 'https://t.me/@iamhatrongvu',
 }
 
 const skills = [

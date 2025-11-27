@@ -33,7 +33,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const { user } = useAuth()
 
-  const publicPages = ['/login', '/register', '/', '/cv']
+  const publicPages = ['/login', '/register', '/', '/cv', "/contact"]
   const authRequired = !publicPages.includes(to.path)
 
   if (authRequired && !user.value) {

@@ -82,7 +82,7 @@ const handleLogin = async () => {
     if (data && data.token) {
       login(email.value, password.value)
       localStorage.setItem('accessToken', data.token)
-      router.push('/')
+      await router.push('/')
     }
   } catch (error) {
     alert(error.response.data.error || 'Login failed');

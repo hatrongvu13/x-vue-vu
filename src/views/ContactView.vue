@@ -33,7 +33,7 @@
             <i class="fab fa-linkedin"></i>
           </div>
           <strong>LinkedIn</strong>
-          <span>linkedin.com/in/yourname</span>
+<!--          <span>{{info.linkedin}}</span>-->
         </a>
 
         <a :href="info.github" target="_blank" class="contact-card">
@@ -41,7 +41,15 @@
             <i class="fab fa-github"></i>
           </div>
           <strong>GitHub</strong>
-          <span>github.com/yourname</span>
+<!--          <span>{{info.github}}</span>-->
+        </a>
+
+        <a :href="info.facebook" target="_blank" class="contact-card">
+          <div class="icon-circle facebook">
+            <i class="fab fa-facebook"></i>
+          </div>
+          <strong>Facebook</strong>
+<!--          <span>{{info.facebook}}</span>-->
         </a>
       </div>
 
@@ -91,10 +99,11 @@ const { user } = useAuth()
 
 // Thông tin liên hệ (bạn sửa lại cho đúng)
 const info = reactive({
-  email: 'your.email@gmail.com',
-  phone: '+84 123 456 789',
-  linkedin: 'https://linkedin.com/in/yourname',
-  github: 'https://github.com/yourname'
+  email: 'hatrongvu13@gmail.com',
+  phone: '+84 943 561 685',
+  linkedin: 'https://linkedin.com/in/vũ-hà-873078190/',
+  github: 'https://github.com/hatrongvu13',
+  facebook: 'https://facebook.com/iamhatrongvu',
 })
 
 const form = reactive({
@@ -227,6 +236,10 @@ onMounted(() => {
 }
 .icon-circle.github {
   background: linear-gradient(45deg, #333, #444);
+}
+
+.icon-circle.facebook {
+  background: linear-gradient(45deg, #5f7bfa, #2147d6);
 }
 
 .contact-card strong {
