@@ -74,27 +74,21 @@ onMounted(() => {
 
 const handleLogin = async () => {
   if (!email.value || !password.value) return
-  loading.value = true
-  const { data } = await api.post('/user/login', { email: email.value, password: password.value })
-  console.log(data)
-  if (data && data.token) {
-    login(email.value, password.value)
-    localStorage.setItem('accessToken', data.token)
-    router.push('/')
-  } else {
-    alert('Email hoặc mật khẩu không đúng!')
+  try {
+    loading.value = true
+    const response = await api.post('/user/login', { email: email.value, password: password.value })
+    console.log(response)
+    const { data } = response
+    if (data && data.token) {
+      login(email.value, password.value)
+      localStorage.setItem('accessToken', data.token)
+      router.push('/')
+    }
+  } catch (error) {
+    alert(error.response.data.error || 'Login failed');
+  } finally {
+    loading.value = false
   }
-  loading.value = false
-
-  // setTimeout(() => {
-  //   // Giả lập delay nhẹ cho đẹp
-  //   if (login(email.value, password.value)) {
-  //     router.push('/')
-  //   } else {
-  //     alert('Email hoặc mật khẩu không đúng!')
-  //   }
-  //   loading.value = false
-  // }, 600)
 }
 </script>
 

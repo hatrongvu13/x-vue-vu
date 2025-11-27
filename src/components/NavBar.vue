@@ -4,15 +4,16 @@
     <div class="nav-left">
       <router-link to="/" class="logo-link">
         <div class="logo-avatar">
-          <span>{{ user?.name?.[0] || 'X' }}</span>
+          <span>{{ 'V' }}</span>
         </div>
       </router-link>
 
-      <!--      <div class="main-links">-->
-      <!--        <router-link to="/" class="nav-link home-link">-->
-      <!--          <i class="fas fa-home"></i> Trang chủ-->
-      <!--        </router-link>-->
-      <!--      </div>-->
+      <div class="main-links">
+        <router-link to="/" class="nav-link home-link">
+          <i class="fas fa-home"></i>
+          Trang chủ
+        </router-link>
+      </div>
     </div>
 
     <!-- CENTER: Search bar (ẩn trên mobile) -->
@@ -24,14 +25,16 @@
     <!-- RIGHT: Auth + Menu -->
     <div class="nav-right">
       <router-link to="/cv" class="cv-btn">
-        <i class="fas fa-file-alt"></i> CV của tôi
+        <i class="fas fa-file-alt"></i>
+        CV của tôi
       </router-link>
       <!-- Khi đã đăng nhập -->
       <template v-if="user">
         <div class="user-info">
-          <span class="greeting"
-            >Xin chào, <strong>{{ user.name }}</strong></span
-          >
+          <span class="greeting">
+            Xin chào,
+            <strong>{{ user.name }}</strong>
+          </span>
           <div class="avatar-circle" @click="toggleMenu">
             <span>{{ user.name[0] }}</span>
           </div>
@@ -41,32 +44,39 @@
         <transition name="slide">
           <div v-if="menuOpen" class="dropdown-menu">
             <router-link to="/about" class="menu-item">
-              <i class="fas fa-user"></i> Giới thiệu
+              <i class="fas fa-user"></i>
+              Giới thiệu
             </router-link>
             <router-link to="/contact" class="menu-item">
-              <i class="fas fa-envelope"></i> Liên hệ
+              <i class="fas fa-envelope"></i>
+              Liên hệ
             </router-link>
             <div class="menu-divider"></div>
 
             <!-- Chỉ admin mới thấy -->
             <template v-if="isAdmin">
               <router-link to="/dashboard" class="menu-item admin">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
               </router-link>
               <router-link to="/admin/visitors" class="menu-item admin">
-                <i class="fas fa-eye"></i> Lượt truy cập ({{ visitorCount }})
+                <i class="fas fa-eye"></i>
+                Lượt truy cập ({{ visitorCount }})
               </router-link>
               <router-link to="/admin/emails" class="menu-item admin">
-                <i class="fas fa-users"></i> Email nhận CV ({{ emailListCount }})
+                <i class="fas fa-users"></i>
+                Email nhận CV ({{ emailListCount }})
               </router-link>
               <router-link to="/admin/cv" class="menu-item admin">
-                <i class="fas fa-file-alt"></i> Quản lý CV
+                <i class="fas fa-file-alt"></i>
+                Quản lý CV
               </router-link>
               <div class="menu-divider"></div>
             </template>
 
             <button @click="handleLogout" class="menu-item logout">
-              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+              <i class="fas fa-sign-out-alt"></i>
+              Đăng xuất
             </button>
           </div>
         </transition>
@@ -75,7 +85,8 @@
       <!-- Khi chưa đăng nhập -->
       <template v-else>
         <router-link to="/login" class="login-btn">
-          <i class="fas fa-sign-in-alt"></i> Đăng nhập
+          <i class="fas fa-sign-in-alt"></i>
+          Đăng nhập
         </router-link>
       </template>
 
@@ -83,9 +94,10 @@
       <button
         class="hamburger"
         @click="mobileMenuOpen = !mobileMenuOpen"
-        :class="{ active: mobileMenuOpen }"
-      >
-        <span></span><span></span><span></span>
+        :class="{ active: mobileMenuOpen }">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
 
@@ -104,13 +116,7 @@
 
           <template v-if="user">
             <div class="mobile-user">Xin chào, {{ user.name }}</div>
-            <button
-              @click="
-                handleLogout(),
-                mobileMenuOpen = false
-              "
-              class="mobile-logout"
-            >
+            <button @click="(handleLogout(), (mobileMenuOpen = false))" class="mobile-logout">
               Đăng xuất
             </button>
           </template>
@@ -403,7 +409,9 @@ document.addEventListener('click', (e) => {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
   z-index: 0;
 }
 .menu-item.logout:hover::before {
@@ -442,7 +450,7 @@ document.addEventListener('click', (e) => {
   transform: rotate(45deg);
   border-bottom: none;
   border-right: none;
-  box-shadow: -3px -3px 10px rgba(0,0,0,0.05);
+  box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.05);
   z-index: -1;
 }
 
